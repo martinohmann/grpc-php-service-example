@@ -1,14 +1,22 @@
 <?php declare(strict_types=1);
+/*
+ * This file is part of the grpc-php-service-example project.
+ *
+ * (c) 2018 Martin Ohmann <martin@mohmann.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-namespace App\Controller\Grpc\HelloWorld;
+namespace App\Server\Controller\Grpc\HelloWorld;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\GrpcStubs\HelloWorld\HelloRequest;
 use App\GrpcStubs\HelloWorld\HelloReply;
-use App\Grpc\GrpcResponse;
-use App\Grpc\GrpcRequestFactory;
+use App\GrpcStubs\HelloWorld\HelloRequest;
+use App\Server\Grpc\GrpcRequestFactory;
+use App\Server\Grpc\GrpcResponse;
 use Google\Protobuf\Internal\Message;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/helloworld.Greeter", methods={"POST"})

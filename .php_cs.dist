@@ -10,7 +10,8 @@ file that was distributed with this source code.
 TXT;
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->exclude(['config/', 'generated/', 'var/']);
 
 $config = PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
