@@ -43,3 +43,11 @@ stan: ## Run phpstan with maximum checks
 .PHONY: inf
 inf: cov ## Throws infection into tests
 	phpdbg -qrr vendor/bin/infection run --coverage=.coverage --show-mutations --verbose
+
+.PHONY: proto
+proto: ## Generate PHP classes for proto files
+	bin/proto-gen
+
+.PHONY: proto-clean
+proto-clean: ## Clean PHP classes generated from proto files
+	rm -rf generated/*
