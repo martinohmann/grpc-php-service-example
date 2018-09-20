@@ -16,7 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace App\Grpc\HelloWorld;
+namespace App\GrpcStubs\HelloWorld;
 
 /**
  * The greeting service definition.
@@ -34,15 +34,15 @@ class GreeterClient extends \Grpc\BaseStub {
 
     /**
      * Sends a greeting
-     * @param \App\Grpc\HelloWorld\HelloRequest $argument input argument
+     * @param \App\GrpcStubs\HelloWorld\HelloRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function SayHello(\App\Grpc\HelloWorld\HelloRequest $argument,
+    public function SayHello(\App\GrpcStubs\HelloWorld\HelloRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/helloworld.Greeter/SayHello',
         $argument,
-        ['\App\Grpc\HelloWorld\HelloReply', 'decode'],
+        ['\App\GrpcStubs\HelloWorld\HelloReply', 'decode'],
         $metadata, $options);
     }
 

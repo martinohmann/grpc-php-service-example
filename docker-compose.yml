@@ -14,7 +14,7 @@ services:
       - 0.0.0.0:8080
       - --fastcgi
       - tcp://php-fpm-grpc:9000
-      - public/grpc.php
+      - public/index.php
     ports:
       - 8080:8080
     depends_on:

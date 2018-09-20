@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use App\Grpc\HelloWorld\GreeterClient;
-use App\Grpc\HelloWorld\HelloRequest;
+use App\GrpcStubs\HelloWorld\GreeterClient;
+use App\GrpcStubs\HelloWorld\HelloRequest;
 
 require __DIR__.'/../vendor/autoload.php';
 
