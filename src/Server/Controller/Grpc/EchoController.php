@@ -8,35 +8,29 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Server\Controller\Grpc\HelloWorld;
+namespace App\Server\Controller\Grpc;
 
-use App\GrpcStubs\HelloWorld\HelloReply;
-use App\GrpcStubs\HelloWorld\HelloRequest;
+use App\GrpcStubs\EchoReply;
+use App\GrpcStubs\EchoRequest;
 use App\Server\Grpc\GrpcResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/helloworld.Greeter", methods={"POST"})
+ * @Route("/Echo", methods={"POST"})
  */
-class GreeterController extends Controller
+class EchoController extends Controller
 {
     /**
-     * @Route("/sayHello")
+     * @Route("/echo")
      *
-     * @param HelloRequest $request
+     * @param EchoRequest $request
      * @return GrpcResponse
      */
-    public function sayHello(HelloRequest $request): GrpcResponse
+    public function echo(EchoRequest $request): GrpcResponse
     {
-        $reply = new HelloReply();
-
-        $reply->setMessage(
-            \sprintf(
-                'Hello %s',
-                $request->getName()
-            )
-        );
+        $reply = new EchoReply();
+        $reply->setMessage($request->getMessage());
 
         return new GrpcResponse($reply);
     }

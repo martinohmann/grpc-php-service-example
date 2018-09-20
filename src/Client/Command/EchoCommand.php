@@ -11,16 +11,16 @@
 namespace App\Client\Command;
 
 use App\Client\Grpc\GrpcClientFactory;
-use App\GrpcStubs\HelloWorld\GreeterClient;
-use App\GrpcStubs\HelloWorld\HelloReply;
-use App\GrpcStubs\HelloWorld\HelloRequest;
+use App\GrpcStubs\EchoClient;
+use App\GrpcStubs\EchoReply;
+use App\GrpcStubs\EchoRequest;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GreeterCommand extends Command
+class EchoCommand extends Command
 {
     /**
      * @var GrpcClientFactory
@@ -43,9 +43,9 @@ class GreeterCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('grpc:greeter')
+            ->setName('grpc:echo')
             ->addOption('address', 'a', InputOption::VALUE_REQUIRED, 'gRPC server address', 'localhost:8080')
-            ->addArgument('name', InputArgument::OPTIONAL, 'Name of the person to greet', 'world')
+            ->addArgument('message', InputArgument::REQUIRED, 'The message that should be sent')
         ;
     }
 
@@ -56,14 +56,14 @@ class GreeterCommand extends Command
     {
         $address = $input->getOption('address');
 
-        /** @var GreeterClient $client */
-        $client = $this->clientFactory->create(GreeterClient::class, $address);
+        /** @var EchoClient $client */
+        $client = $this->clientFactory->create(EchoClient::class, $address);
 
-        $request = new HelloRequest();
-        $request->setName($input->getArgument('name'));
+        $request = new EchoRequest();
+        $request->setMessage($input->getArgument('message'));
 
-        /** @var HelloReply $reply */
-        list($reply, $status) = $client->sayHello($request)->wait();
+        /** @var EchoReply $reply */
+        list($reply, $status) = $client->echo($request)->wait();
 
         $output->writeln(\sprintf('gRPC reply: %s', $reply->getMessage()));
         $output->writeln(\sprintf('Status code: %d', $status->code));

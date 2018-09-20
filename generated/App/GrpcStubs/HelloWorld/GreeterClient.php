@@ -38,9 +38,9 @@ class GreeterClient extends \Grpc\BaseStub {
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function SayHello(\App\GrpcStubs\HelloWorld\HelloRequest $argument,
+    public function sayHello(\App\GrpcStubs\HelloWorld\HelloRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/helloworld.Greeter/SayHello',
+        return $this->_simpleRequest('/helloworld.Greeter/sayHello',
         $argument,
         ['\App\GrpcStubs\HelloWorld\HelloReply', 'decode'],
         $metadata, $options);
