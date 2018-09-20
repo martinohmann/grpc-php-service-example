@@ -1,0 +1,46 @@
+language: php
+
+git:
+  depth: 3
+  submodules: false
+
+matrix:
+  fast_finish: true
+
+sudo: false
+
+php:
+  - 7.1
+  - 7.2
+
+install:
+  - wget -c -nc --retry-connrefused --tries=0 https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar -O coveralls.phar
+  - chmod +x coveralls.phar
+  - php coveralls.phar --version
+
+before_script:
+  - mkdir -p build/logs
+  - travis_retry composer self-update
+  - travis_retry composer update $PREFER_LOWEST
+
+script:
+  - vendor/bin/phpstan analyse src --configuration phpstan.neon --level max
+  - phpdbg -qrr vendor/bin/phpunit -c phpunit.coverage.xml --log-junit .coverage/phpunit.junit.xml --coverage-xml .coverage/coverage-xml --coverage-clover build/logs/clover.xml
+  - phpdbg -qrr vendor/bin/infection run --coverage=.coverage --show-mutations --verbose
+
+after_success:
+  - travis_retry php coveralls.phar -v
+
+notifications:
+  email: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  matrix:
+    - PREFER_LOWEST="--prefer-lowest --prefer-stable"
+    - PREFER_LOWEST=""
+  global:
+    secure:
