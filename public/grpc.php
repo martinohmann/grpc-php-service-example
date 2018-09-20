@@ -1,8 +1,7 @@
 <?php
 
-use Proto\HelloWorld\HelloRequest;
-use Proto\HelloWorld\HelloReply;
-use Proto\GPBMetadata\Helloworld;
+use App\Grpc\HelloWorld\HelloRequest;
+use App\Grpc\HelloWorld\HelloReply;
 
 require __DIR__.'/../vendor/autoload.php';
 

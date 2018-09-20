@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-option php_namespace = "Proto\\HelloWorld"; 
+option php_namespace = "App\\Grpc\\HelloWorld"; 
 
 package helloworld;
 

@@ -30,7 +30,7 @@
     "autoload": {
         "psr-4": {
             "GPBMetadata\\": "generated/GPBMetadata",
-            "Proto\\": "generated/Proto",
+            "App\\Grpc\\": "generated/App/Grpc",
             "App\\": "src/"
         }
     },
