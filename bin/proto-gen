@@ -20,6 +20,6 @@ protoc \
   --grpc_out=./generated \
   --php_out=./generated \
   --plugin=protoc-gen-grpc="$grpc_php_plugin" \
-  ./protos/helloworld.proto
+  ./protos/*.proto
 
 composer dump-autoload
