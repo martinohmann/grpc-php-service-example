@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>EchoRequest</code>
+ * Generated from protobuf message <code>EchoMessage</code>
  */
-class EchoRequest extends \Google\Protobuf\Internal\Message
+class EchoMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>string message = 1;</code>

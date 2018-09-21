@@ -13,7 +13,7 @@ namespace App\Client\Command;
 use App\Client\Grpc\GrpcClientFactory;
 use App\GrpcStubs\EchoClient;
 use App\GrpcStubs\EchoReply;
-use App\GrpcStubs\EchoRequest;
+use App\GrpcStubs\EchoMessage;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -40,11 +40,11 @@ class EchoCommand extends AbstractGrpcCommand
         /** @var EchoClient $client */
         $client = $this->createGrpcClient(EchoClient::class);
 
-        $request = new EchoRequest();
-        $request->setMessage($input->getArgument('message'));
+        $message = new EchoMessage();
+        $message->setMessage($input->getArgument('message'));
 
         /** @var EchoReply $reply */
-        list($reply, $status) = $client->echo($request)->wait();
+        list($reply, $status) = $client->echo($message)->wait();
 
         $output->writeln(\sprintf('gRPC reply: %s', $reply->getMessage()));
         $output->writeln(\sprintf('Status code: %d', $status->code));

@@ -3,13 +3,9 @@ syntax = "proto3";
 option php_namespace = "App\\GrpcStubs";
 
 service Echo {
-  rpc echo (EchoRequest) returns (EchoReply) {}
+  rpc echo (EchoMessage) returns (EchoMessage) {}
 }
 
-message EchoRequest {
-  string message = 1;
-}
-
-message EchoReply {
+message EchoMessage {
   string message = 1;
 }

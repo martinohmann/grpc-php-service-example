@@ -17,15 +17,15 @@ class EchoClient extends \Grpc\BaseStub {
     }
 
     /**
-     * @param \App\GrpcStubs\EchoRequest $argument input argument
+     * @param \App\GrpcStubs\EchoMessage $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function echo(\App\GrpcStubs\EchoRequest $argument,
+    public function echo(\App\GrpcStubs\EchoMessage $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/Echo/echo',
         $argument,
-        ['\App\GrpcStubs\EchoReply', 'decode'],
+        ['\App\GrpcStubs\EchoMessage', 'decode'],
         $metadata, $options);
     }
 

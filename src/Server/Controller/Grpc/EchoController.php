@@ -11,7 +11,7 @@
 namespace App\Server\Controller\Grpc;
 
 use App\GrpcStubs\EchoReply;
-use App\GrpcStubs\EchoRequest;
+use App\GrpcStubs\EchoMessage;
 use App\Server\Grpc\GrpcResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,14 +24,11 @@ class EchoController extends Controller
     /**
      * @Route("/echo")
      *
-     * @param EchoRequest $request
+     * @param EchoMessage $message
      * @return GrpcResponse
      */
-    public function echo(EchoRequest $request): GrpcResponse
+    public function echo(EchoMessage $message): GrpcResponse
     {
-        $reply = new EchoReply();
-        $reply->setMessage($request->getMessage());
-
-        return new GrpcResponse($reply);
+        return new GrpcResponse($message);
     }
 }
