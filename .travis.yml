@@ -20,6 +20,8 @@ install:
 
 before_script:
   - mkdir -p build/logs
+  - pecl install grpc-1.15.0
+  - pecl install protobuf-3.6.1
   - travis_retry composer self-update
   - travis_retry composer update $PREFER_LOWEST
 
