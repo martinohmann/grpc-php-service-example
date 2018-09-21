@@ -4,7 +4,7 @@ grpc-php-service-example
 This is an example service for both PHP gRPC server and client implementations.
 
 It uses [grpc-fastcgi-proxy](https://github.com/bakins/grpc-fastcgi-proxy) to
-provide an example php gRPC server implementation which is not feature complete.
+provide an example PHP gRPC server implementation which is not feature complete.
 
 The main goal of the project is to get some experience with gRPC in PHP projects.
 

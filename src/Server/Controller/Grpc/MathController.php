@@ -12,8 +12,6 @@ namespace App\Server\Controller\Grpc;
 
 use App\GrpcStubs\Math\DivArgs;
 use App\GrpcStubs\Math\DivReply;
-use App\GrpcStubs\Math\FibArgs;
-use App\GrpcStubs\Math\Num;
 use App\Server\Grpc\GrpcResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,30 +38,5 @@ class MathController extends Controller
         $reply->setRemainder($remainder);
 
         return new GrpcResponse($reply);
-    }
-
-    /**
-     * @Route("/Fib")
-     *
-     * @param FibArgs $fibArgs
-     * @return GrpcResponse
-     */
-    public function fib(FibArgs $fibArgs): GrpcResponse
-    {
-        $num = new Num();
-        $num->setNum($fibArgs->getLimit());
-
-        return new GrpcResponse($num);
-    }
-
-    /**
-     * @Route("/Sum")
-     *
-     * @param Num $num
-     * @return GrpcResponse
-     */
-    public function sum(Num $num): GrpcResponse
-    {
-        return new GrpcResponse($num);
     }
 }
