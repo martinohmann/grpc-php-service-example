@@ -1,6 +1,11 @@
 grpc-php-service-example
 ========================
 
+[![Build Status](https://travis-ci.org/martinohmann/grpc-php-service-example.svg?branch=master)](https://travis-ci.org/martinohmann/grpc-php-service-example)
+[![Coverage Status](https://coveralls.io/repos/github/martinohmann/grpc-php-service-example/badge.svg)](https://coveralls.io/github/martinohmann/grpc-php-service-example)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PHP 7.1+](https://img.shields.io/badge/php-7.1%2B-blue.svg)](https://github.com/mohmann/grpc-php-service-example)
+
 This is an example service for both PHP gRPC server and client implementations.
 
 It uses [grpc-fastcgi-proxy](https://github.com/bakins/grpc-fastcgi-proxy) to
