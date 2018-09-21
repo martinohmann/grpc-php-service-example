@@ -44,6 +44,9 @@
             "ref": "81dee417d2cc60cd1c9d6208dff2ec22a1103e93"
         }
     },
+    "google/protobuf": {
+        "version": "v3.6.1"
+    },
     "grpc/grpc": {
         "version": "1.15.0"
     },
