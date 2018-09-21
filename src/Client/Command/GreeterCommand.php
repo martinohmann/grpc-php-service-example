@@ -10,13 +10,11 @@
 
 namespace App\Client\Command;
 
-use App\Client\Grpc\GrpcClientFactory;
 use App\GrpcStubs\HelloWorld\GreeterClient;
 use App\GrpcStubs\HelloWorld\HelloReply;
 use App\GrpcStubs\HelloWorld\HelloRequest;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GreeterCommand extends AbstractGrpcCommand

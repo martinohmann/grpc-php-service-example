@@ -11,13 +11,11 @@
 namespace App\Client\Command\Math;
 
 use App\Client\Command\AbstractGrpcCommand;
-use App\Client\Grpc\GrpcClientFactory;
 use App\GrpcStubs\Math\DivArgs;
 use App\GrpcStubs\Math\DivReply;
 use App\GrpcStubs\Math\MathClient;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class DivCommand extends AbstractGrpcCommand

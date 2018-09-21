@@ -10,13 +10,11 @@
 
 namespace App\Client\Command;
 
-use App\Client\Grpc\GrpcClientFactory;
 use App\GrpcStubs\EchoClient;
 use App\GrpcStubs\EchoMessage;
 use App\GrpcStubs\EchoReply;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class EchoCommand extends AbstractGrpcCommand
