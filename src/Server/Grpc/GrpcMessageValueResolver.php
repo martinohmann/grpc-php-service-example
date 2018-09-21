@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 class GrpcMessageValueResolver implements ArgumentValueResolverInterface
 {
     /**
-     * @var GrpcRequestFactory
+     * @var GrpcMessageFactory
      */
     private $factory;
 
     /**
-     * @param GrpcRequestFactory $factory
+     * @param GrpcMessageFactory $factory
      */
-    public function __construct(GrpcRequestFactory $factory)
+    public function __construct(GrpcMessageFactory $factory)
     {
         $this->factory = $factory;
     }

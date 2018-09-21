@@ -11,8 +11,8 @@
 namespace App\Tests\Server\Grpc;
 
 use App\GrpcStubs\EchoMessage;
+use App\Server\Grpc\GrpcMessageFactory;
 use App\Server\Grpc\GrpcMessageValueResolver;
-use App\Server\Grpc\GrpcRequestFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -20,9 +20,9 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 class GrpcMessageValueResolverTest extends TestCase
 {
     /**
-     * @var GrpcRequestFactory
+     * @var GrpcMessageFactory
      */
-    private $requestFactory;
+    private $messageFactory;
 
     /**
      * @var GrpcMessageValueResolver
@@ -31,8 +31,8 @@ class GrpcMessageValueResolverTest extends TestCase
 
     public function setUp()
     {
-        $this->requestFactory = \Phake::mock(GrpcRequestFactory::class);
-        $this->resolver = new GrpcMessageValueResolver($this->requestFactory);
+        $this->messageFactory = \Phake::mock(GrpcMessageFactory::class);
+        $this->resolver = new GrpcMessageValueResolver($this->messageFactory);
     }
 
     /**
@@ -75,7 +75,7 @@ class GrpcMessageValueResolverTest extends TestCase
             ->getType()
             ->thenReturn(EchoMessage::class);
 
-        \Phake::when($this->requestFactory)
+        \Phake::when($this->messageFactory)
             ->create(EchoMessage::class, $request)
             ->thenReturn(new EchoMessage());
 
@@ -83,7 +83,7 @@ class GrpcMessageValueResolverTest extends TestCase
 
         $this->assertInstanceOf(EchoMessage::class, $resolved[0]);
 
-        \Phake::verify($this->requestFactory)
+        \Phake::verify($this->messageFactory)
             ->create(EchoMessage::class, $request);
     }
 }

@@ -1,6 +1,7 @@
 /.coverage/
 /.metrics/
 .infection-log.txt
+.phpunit.result.cache
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/

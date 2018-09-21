@@ -11,20 +11,20 @@
 namespace App\Tests\Server\Grpc;
 
 use App\GrpcStubs\EchoMessage;
-use App\Server\Grpc\GrpcRequestFactory;
+use App\Server\Grpc\GrpcMessageFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class GrpcRequestFactoryTest extends TestCase
+class GrpcMessageFactoryTest extends TestCase
 {
     /**
-     * @var GrpcRequestFactory
+     * @var GrpcMessageFactory
      */
     private $factory;
 
     public function setUp()
     {
-        $this->factory = new GrpcRequestFactory();
+        $this->factory = new GrpcMessageFactory();
     }
 
     /**
@@ -51,7 +51,7 @@ class GrpcRequestFactoryTest extends TestCase
     /**
      * @test
      */
-    public function itOnlyCreatesClientsThatAreSubclassesOfMessage()
+    public function itOnlyCreatesMessagesThatAreSubclassesOfMessage()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->factory->create(\stdClass::class, new Request());

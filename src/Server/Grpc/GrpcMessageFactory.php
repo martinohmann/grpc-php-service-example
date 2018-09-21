@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\Message;
 use Symfony\Component\Debug\Exception\ClassNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 
-class GrpcRequestFactory
+class GrpcMessageFactory
 {
     /**
      * @param string $className
