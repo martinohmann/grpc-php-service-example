@@ -16,11 +16,23 @@ use Grpc\ChannelCredentials;
 class GrpcClientFactory
 {
     /**
+     * @var string
+     */
+    private $serverAddress;
+
+    /**
+     * @param string $serverAddress
+     */
+    public function __construct(string $serverAddress)
+    {
+        $this->serverAddress = $serverAddress;
+    }
+
+    /**
      * @param string $className
-     * @param string $address
      * @return BaseStub
      */
-    public function create(string $className, string $address): BaseStub
+    public function create(string $className): BaseStub
     {
         if (!\is_subclass_of($className, BaseStub::class)) {
             throw new \InvalidArgumentException(
@@ -32,7 +44,7 @@ class GrpcClientFactory
             );
         }
         
-        $client = new $className($address, [
+        $client = new $className($this->serverAddress, [
             'credentials' => ChannelCredentials::createInsecure(),
         ]);
 

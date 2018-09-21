@@ -1,5 +1,7 @@
 .DEFAULT_GOAL := help
 
+GRPC_PHP_PLUGIN_PATH ?= /usr/local/bin/grpc_php_plugin
+
 ifeq ($(COMPOSER_HOME),)
 	export COMPOSER_HOME=~/.composer
 endif
@@ -46,7 +48,13 @@ inf: cov ## Throws infection into tests
 
 .PHONY: proto
 proto: proto-clean ## Generate PHP classes for proto files
-	bin/proto-gen
+	protoc \
+	  --proto_path=./protos \
+	  --grpc_out=./generated \
+	  --php_out=./generated \
+	  --plugin=protoc-gen-grpc="${GRPC_PHP_PLUGIN_PATH}" \
+	  ./protos/*.proto
+	composer dump-autoload
 
 .PHONY: proto-clean
 proto-clean: ## Clean PHP classes generated from proto files

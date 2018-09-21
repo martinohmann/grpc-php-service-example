@@ -14,29 +14,13 @@ use App\Client\Grpc\GrpcClientFactory;
 use App\GrpcStubs\HelloWorld\GreeterClient;
 use App\GrpcStubs\HelloWorld\HelloReply;
 use App\GrpcStubs\HelloWorld\HelloRequest;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GreeterCommand extends Command
+class GreeterCommand extends AbstractGrpcCommand
 {
-    /**
-     * @var GrpcClientFactory
-     */
-    private $clientFactory;
-
-    /**
-     * @param GrpcClientFactory $clientFactory
-     */
-    public function __construct(GrpcClientFactory $clientFactory)
-    {
-        $this->clientFactory = $clientFactory;
-
-        parent::__construct();
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -44,7 +28,6 @@ class GreeterCommand extends Command
     {
         $this
             ->setName('grpc:greeter')
-            ->addOption('address', 'a', InputOption::VALUE_REQUIRED, 'gRPC server address', 'localhost:8080')
             ->addArgument('name', InputArgument::OPTIONAL, 'Name of the person to greet', 'world')
         ;
     }
@@ -54,10 +37,8 @@ class GreeterCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $address = $input->getOption('address');
-
         /** @var GreeterClient $client */
-        $client = $this->clientFactory->create(GreeterClient::class, $address);
+        $client = $this->createGrpcClient(GreeterClient::class);
 
         $request = new HelloRequest();
         $request->setName($input->getArgument('name'));

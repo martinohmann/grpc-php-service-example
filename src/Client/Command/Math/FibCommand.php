@@ -8,18 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Client\Command;
+namespace App\Client\Command\Math;
 
+use App\Client\Command\AbstractGrpcCommand;
 use App\Client\Grpc\GrpcClientFactory;
-use App\GrpcStubs\EchoClient;
-use App\GrpcStubs\EchoReply;
-use App\GrpcStubs\EchoRequest;
+use App\GrpcStubs\Math\FibArgs;
+use App\GrpcStubs\Math\MathClient;
+use App\GrpcStubs\Math\Num;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class EchoCommand extends AbstractGrpcCommand
+class FibCommand extends AbstractGrpcCommand
 {
     /**
      * {@inheritdoc}
@@ -27,8 +28,8 @@ class EchoCommand extends AbstractGrpcCommand
     protected function configure()
     {
         $this
-            ->setName('grpc:echo')
-            ->addArgument('message', InputArgument::REQUIRED, 'The message that should be sent')
+            ->setName('grpc:math:fib')
+            ->addArgument('limit', InputArgument::REQUIRED, 'Fibonacci limit')
         ;
     }
 
@@ -37,16 +38,18 @@ class EchoCommand extends AbstractGrpcCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var EchoClient $client */
-        $client = $this->createGrpcClient(EchoClient::class);
+        /** @var MathClient $client */
+        $client = $this->createGrpcClient(MathClient::class);
 
-        $request = new EchoRequest();
-        $request->setMessage($input->getArgument('message'));
+        $fibArgs = new FibArgs();
+        $fibArgs->setLimit($input->getArgument('limit'));
 
-        /** @var EchoReply $reply */
-        list($reply, $status) = $client->echo($request)->wait();
+        $call = $client->Fib($fibArgs);
 
-        $output->writeln(\sprintf('gRPC reply: %s', $reply->getMessage()));
-        $output->writeln(\sprintf('Status code: %d', $status->code));
+        $results = iterator_to_array($call->responses());
+
+        foreach ($results as $num) {
+            $output->writeln($num->getNum());
+        }
     }
 }

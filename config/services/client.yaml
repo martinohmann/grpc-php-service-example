@@ -1,4 +1,7 @@
 ---
+parameters:
+  env(GRPC_SERVER_ADDR): ''
+
 services:
   _defaults:
     autowire: true
@@ -14,3 +17,7 @@ services:
   App\Client\:
     resource: '../../src/Client'
     exclude: '../../src/Client/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+  App\Client\Grpc\GrpcClientFactory:
+    arguments:
+      - '%env(resolve:GRPC_SERVER_ADDR)%'
