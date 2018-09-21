@@ -1,6 +1,17 @@
 version: '3'
 services:
-  php-fpm-grpc:
+  client:
+    build: docker/php-grpc
+    image: mohmann/php-grpc
+    tty: true
+    command:
+      - /bin/sh
+    working_dir: /app
+    volumes:
+      - .:/app
+    depends_on:
+      - grpc-fastcgi-proxy
+  server:
     build: docker/php-fpm-grpc
     image: mohmann/php-fpm-grpc
     volumes:
@@ -13,9 +24,9 @@ services:
       - --address
       - 0.0.0.0:8080
       - --fastcgi
-      - tcp://php-fpm-grpc:9000
+      - tcp://server:9000
       - public/index.php
     ports:
       - 8080:8080
     depends_on:
-      - php-fpm-grpc
+      - server

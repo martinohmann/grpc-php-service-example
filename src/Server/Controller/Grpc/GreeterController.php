@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Server\Controller\Grpc\HelloWorld;
+namespace App\Server\Controller\Grpc;
 
 use App\GrpcStubs\HelloWorld\HelloReply;
 use App\GrpcStubs\HelloWorld\HelloRequest;
