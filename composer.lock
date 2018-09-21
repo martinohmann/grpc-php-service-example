@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "69c86bb6b94095d92ac84a68e9c6ef06",
+    "content-hash": "b7fef395c6bf98901bf1122c9a158882",
     "packages": [
         {
             "name": "grpc/grpc",

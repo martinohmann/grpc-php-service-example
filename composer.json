@@ -6,10 +6,10 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "grpc/grpc": "v1.15.0",
-        "symfony/console": "*",
+        "symfony/console": "^4.1",
         "symfony/flex": "^1.1",
-        "symfony/framework-bundle": "*",
-        "symfony/yaml": "*"
+        "symfony/framework-bundle": "^4.1",
+        "symfony/yaml": "^4.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
@@ -19,7 +19,7 @@
         "phpstan/phpstan": "^0.10.3",
         "phpunit/phpunit": "^7.3",
         "spatie/phpunit-watcher": "^1.6",
-        "symfony/dotenv": "*"
+        "symfony/dotenv": "^4.1"
     },
     "config": {
         "preferred-install": {
