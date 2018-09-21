@@ -1,11 +1,19 @@
 <?php
+/*
+ * This file is part of the grpc-php-service-example project.
+ *
+ * (c) 2018 Martin Ohmann <martin@mohmann.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Tests\Server\Grpc;
 
-use PHPUnit\Framework\TestCase;
-use App\Server\Grpc\GrpcRequestFactory;
-use Symfony\Component\HttpFoundation\Request;
 use App\GrpcStubs\EchoMessage;
+use App\Server\Grpc\GrpcRequestFactory;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 class GrpcRequestFactoryTest extends TestCase
 {

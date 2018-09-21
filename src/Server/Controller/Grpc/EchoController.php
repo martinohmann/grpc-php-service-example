@@ -10,8 +10,8 @@
 
 namespace App\Server\Controller\Grpc;
 
-use App\GrpcStubs\EchoReply;
 use App\GrpcStubs\EchoMessage;
+use App\GrpcStubs\EchoReply;
 use App\Server\Grpc\GrpcResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
